@@ -1,0 +1,88 @@
+{% extends 'base.html' %}   
+{% load bootstrap4 %}
+    {% block body %}
+
+     <!-- bradcam_area  -->
+    <div class="bradcam_area bradcam_bg_1">
+        <div class="container">
+            <div class="row">
+                <div class="col-xl-12">
+                    <div class="bradcam_text">
+                        <h3>{{job.title}}</h3>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+    <!--/ bradcam_area  -->
+
+    <div class="job_details_area">
+        <div class="container">
+            <div class="row">
+                <div class="col-lg-8 mx-auto">
+                    <div class="job_sumary">
+                        <div class="summery_header">
+                            <h3>Profile Summery</h3>
+                        </div>
+                        <div class="job_content">
+                            <ul>
+                                <li>Name: <span>{{Profile.user}}</span></li>
+                                <li>Email: <span>{{Profile.user.email}} </span></li>
+                                <li>First_Name: <span> {{Profile.First_Name}} </span></li>
+                                <li>Midle_Name: <span>{{Profile.Midle_Name}}</span></li>
+                                <li>Last_Name: <span>{{Profile.Last_Name}}</span></li>
+                                <li>First_Name: <span> {{Profile.user.first_name}} </span></li>
+                                <li>Birth_Date: <span>{{Profile.Birth_Date}}</span></li>
+                                <li>Gender: <span>{{Profile.Gender}}</span></li>
+                                <li>Soical_State: <span>{{Profile.Soical_State}} </span></li>
+                                <li>Phone: <span> {{Profile.Phone_Number}} </span></li>
+                                <li>Country: <span> {{Profile.Country.name}} </span></li>
+                                <li>city_name: <span>{{Profile.city_name}}</span></li>
+                                <li>Group: <span>{{group}}</span></li>
+                            </ul>
+
+
+
+                            
+                        </div>
+                       
+                        <div class="job_content">
+                            <div class="row">
+                                {%for expereion in expereions %}
+
+                                    <ul>
+                                        <li>Job_Title: <span> {{expereion.Job_Title}} </span></li>
+                                        <li>Midle_Name: <span>{{expereion.Organisation}}</span></li>
+                                        <li>Duration: <span>{{expereion.Duration}}</span></li>
+                                        <li>From_Date: <span> {{expereion.From_Date}} </span></li>
+                                        <li>To_Date: <span>{{expereion.To_Date}}</span></li>
+                                        <li>Country: <span>{{expereion.Country}}</span></li>
+                                        <li>city_name: <span>{{expereion.city_name}}</span></li>
+                                        <li>Location: <span> {{expereion.Location}} </span></li>
+                                        <li>Responsibilities: <span>{{expereion.Responsibilities}} </span></li>
+
+                                    </ul>
+                                    <br>
+                                    
+
+
+                            
+                                {%endfor%}
+                        </div>  
+                        </div>
+                    </div class="p-5">
+                    <a href="{% url 'accounts:profile_edit'%}" class="boxed-btn3 w-100">Edite Profile</a>
+                   <div>
+                   </div>
+                    
+                </div>
+            </div>
+        </div>
+    </div>
+    
+    {% endblock body %}
+   
+                                           
+
+
+   
