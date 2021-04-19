@@ -42,7 +42,22 @@
                             </ul>
 
 
-
+                            <div class="card" style="width: 18rem;">
+                                <img src= {{Profile.Photo}} class="card-img-top" alt="...">
+                                <div class="card-body">
+                                  <h5 class="card-title">Card title</h5>
+                                  <p class="card-text">Some quick example text to build on the card title and make up the bulk of the card's content.</p>
+                                </div>
+                                <ul class="list-group list-group-flush">
+                                  <li class="list-group-item">An item</li>
+                                  <li class="list-group-item">A second item</li>
+                                  <li class="list-group-item">A third item</li>
+                                </ul>
+                                <div class="card-body">
+                                  <a href="#" class="card-link">Card link</a>
+                                  <a href="#" class="card-link">Another link</a>
+                                </div>
+                              </div>
                             
                         </div>
                        
@@ -68,6 +83,92 @@
 
                             
                                 {%endfor%}
+                        </div>  
+                        </div>
+                        <div class="job_content">
+                            <div class="row">
+                                <br>
+                                {%for course in courses %}
+
+                                    <ul>
+                                        <li>Cours_Name: <span> {{course.Cours_Name}} </span></li>
+                                        <li>Company: <span>{{course.Company}}</span></li>
+                                        <li>Type: <span>{{course.Type}}</span></li>
+                                        <li>Country: <span> {{course.Country.name}} </span></li>
+                                        <li>city_name: <span>{{course.city_name}}</span></li>
+                                        <li>race_start: <span>{{course.race_start}}</span></li>
+                                        <li>race_finish: <span>{{course.race_finish}}</span></li>
+
+                                    </ul>
+                                    <br>
+                                    <br>
+                                    <br>
+                                    
+
+
+                            
+                                {%endfor%}
+                        </div>  
+                        </div>
+                        <div class="job_content">
+                            <div class="row">
+                                <br>
+                                {%for academi in academic %}  
+
+                                    <table class="table"  >
+                                        <caption>Monthly savings</caption>
+                                        <thead>
+                                            <tr>
+                                                <th   colspan="2" bgcolor="lightgray"‏‏ align="center">Academic Background</th>
+                                               </tr>
+
+                                        </thead>
+                                        <tbody>
+                                            <tr>
+                                                <th scope="row">Certificate Type</th>
+                                                <td> {{academi.Certificate_Type}}</td>
+                                            </tr>
+                                            <tr>
+                                                <th scope="row">University Name</th>
+                                                <td>{{academi.University_Name}}</td>
+
+                                            </tr>
+                                            <tr>
+                                                <th scope="row">specialization</th>
+                                                <td colspan="2">{{academi.specialization}}</td>
+
+                                            </tr>
+                                            <tr>
+                                                <th scope="row">Location</th>
+                                                <td colspan="2"> {{academi.Location}}</td>
+
+                                            </tr>
+                                            <tr>
+                                                <th scope="row">Duration</th>
+                                                <td colspan="2">{{academi.Duration}}</td>
+
+                                            </tr>
+                                        </tbody>
+                                            <tr>
+                                                <th scope="row">From Date</th>
+                                                <td colspan="2">{{academi.From_Date}}</td>
+
+                                            </tr>
+                                        </tbody>
+                                            <tr>
+                                                <th scope="row">To Date</th>
+                                                <td colspan="2">{{academi.To_Date}}</td>
+
+                                            </tr>
+                                            <tr>
+                                                <th scope="row">GPA</th>
+                                                <td colspan="2">{{academi.GPA}}</td>
+
+                                            </tr>
+
+                                        </tbody>
+                                    </table>
+                                    {%endfor%}
                         </div>  
                         </div>
                     </div class="p-5">

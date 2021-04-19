@@ -109,7 +109,7 @@ class Expereions(models.Model):
 
 
 class Courses(models.Model):
-    user = models.OneToOneField(User, on_delete=models.CASCADE)
+    user = models.ForeignKey(User,on_delete=models.CASCADE , null=True)
     Cours_Name = models.CharField(null=True, max_length=50)
     Company = models.CharField(null=True, max_length=50)
     Type = models.CharField(null=True, max_length=50)
@@ -125,3 +125,32 @@ class Courses(models.Model):
     
     def __str__(self):
         return str(self.Cours_Name)
+
+
+
+
+
+Certificate=(
+            (" High School"," High School"),
+            ("University student","University student"),
+            ("diploma","diploma"),
+            ("Intermediate Institute ","Intermediate Institute "),
+            ("Bachelor's ","Bachelor's "),
+            ("Master's ","Master's "),
+            ("Ph.D.","Ph.D."),
+)
+
+class Academic_Background(models.Model):
+    user = models.ForeignKey(User,on_delete=models.CASCADE , null=True)
+    Certificate_Type= models.CharField( max_length=50, choices= Certificate)
+    University_Name = models.CharField( max_length=50)
+    specialization = models.CharField( max_length=50)
+    Location = models.CharField( max_length=50)
+    Duration = models.CharField( max_length=50)
+    From_Date = models.DateField()
+    To_Date = models.DateField()
+    GPA = models.FloatField()
+    
+    def __str__(self):
+        return str( "{}  -  {}" .format(self.Certificate_Type,self.specialization))
+     
