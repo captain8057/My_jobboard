@@ -25,13 +25,13 @@
                             <h3>Profile Summery</h3>
                         </div>
                         <div class="job_content">
-                            <ul>
-                                <li>Name: <span>{{Profile.user}}</span></li>
+                            <!-- <ul>
+                                <li>User: <span>{{Profile.user}}</span></li>
                                 <li>Email: <span>{{Profile.user.email}} </span></li>
                                 <li>First_Name: <span> {{Profile.First_Name}} </span></li>
                                 <li>Midle_Name: <span>{{Profile.Midle_Name}}</span></li>
                                 <li>Last_Name: <span>{{Profile.Last_Name}}</span></li>
-                                <li>First_Name: <span> {{Profile.user.first_name}} </span></li>
+                                <li>User First_Name: <span> {{Profile.user.first_name}} </span></li>
                                 <li>Birth_Date: <span>{{Profile.Birth_Date}}</span></li>
                                 <li>Gender: <span>{{Profile.Gender}}</span></li>
                                 <li>Soical_State: <span>{{Profile.Soical_State}} </span></li>
@@ -39,33 +39,46 @@
                                 <li>Country: <span> {{Profile.Country.name}} </span></li>
                                 <li>city_name: <span>{{Profile.city_name}}</span></li>
                                 <li>Group: <span>{{group}}</span></li>
-                            </ul>
+                            </ul> -->
 
 
-                            <div class="card" style="width: 18rem;">
-                                <img src= {{Profile.Photo}} class="card-img-top" alt="...">
+
+                              <div class="container" style="width: 30rem;">
+                                <img src="{{Profile.Photo.url}}" class="card-img-top" alt="...">
                                 <div class="card-body">
-                                  <h5 class="card-title">Card title</h5>
+                                  <h5 class="card-title">Profile Summery</h5>
                                   <p class="card-text">Some quick example text to build on the card title and make up the bulk of the card's content.</p>
                                 </div>
                                 <ul class="list-group list-group-flush">
-                                  <li class="list-group-item">An item</li>
-                                  <li class="list-group-item">A second item</li>
-                                  <li class="list-group-item">A third item</li>
+                                  <li class="list-group-item">User: <span>{{Profile.user}}</span></li>
+                                  <li class="list-group-item">Email: <span>{{Profile.user.email}} </span></li>
+                                  <li class="list-group-item">First_Name: <span> {{Profile.First_Name}} </span></li>
+                                  <li class="list-group-item">Midle_Name: <span>{{Profile.Midle_Name}}</span></li>
+                                  <li class="list-group-item">Last_Name: <span>{{Profile.Last_Name}}</span></li>
+                                  <li class="list-group-item">User First_Name: <span> {{Profile.user.first_name}} </span></li>
+                                  <li class="list-group-item">Birth_Date: <span>{{Profile.Birth_Date}}</span></li>
+                                  <li class="list-group-item">Gender: <span>{{Profile.Gender}}</span></li>
+                                  <li class="list-group-item">Soical_State: <span>{{Profile.Soical_State}} </span></li>
+                                  <li class="list-group-item">Phone: <span> {{Profile.Phone_Number}} </span></li>
+                                  <li class="list-group-item">Country: <span> {{Profile.Country.name}} </span></li>
+                                  <li class="list-group-item">city_name: <span>{{Profile.city_name}}</span></li>
+                                  <li class="list-group-item">Group: <span>{{group}}</span></li>
+
+
+
                                 </ul>
                                 <div class="card-body">
-                                  <a href="#" class="card-link">Card link</a>
+                                  <a href="{% url 'accounts:profile_edit'%}" class="card-link">Edite Profile</a>
                                   <a href="#" class="card-link">Another link</a>
                                 </div>
                               </div>
-                            
                         </div>
                        
                         <div class="job_content">
                             <div class="row">
                                 {%for expereion in expereions %}
 
-                                    <ul>
+                                    <!-- <ul>
                                         <li>Job_Title: <span> {{expereion.Job_Title}} </span></li>
                                         <li>Midle_Name: <span>{{expereion.Organisation}}</span></li>
                                         <li>Duration: <span>{{expereion.Duration}}</span></li>
@@ -76,9 +89,68 @@
                                         <li>Location: <span> {{expereion.Location}} </span></li>
                                         <li>Responsibilities: <span>{{expereion.Responsibilities}} </span></li>
 
-                                    </ul>
+                                    </ul> -->
                                     <br>
-                                    
+                                    <table class="table"  >
+                                        <caption><a href="#"><i class="fas fa-edit"></i></a>
+                                            <a class="text-danger" href="#"><i class="fas fa-trash-alt"></i></a></caption>
+                                        <thead>
+                                            <tr>
+                                                <th   colspan="2" bgcolor="lightgray"‏‏ align="center">Practical Experiences</th>
+                                                
+                                               </tr>
+
+                                        </thead>
+                                        <tbody>
+                                            <tr>
+                                                <th scope="row">Job Title </th>
+                                                <td>{{expereion.Job_Title}}</td>
+                                            </tr>
+                                            <tr>
+                                                <th scope="row">Organisation</th>
+                                                <td>{{expereion.Organisation}}</td>
+
+                                            </tr>
+                                            <tr>
+                                                <th scope="row">Duration</th>
+                                                <td colspan="2">{{expereion.Duration}}</td>
+
+                                            </tr>
+                                            <tr>
+                                                <th scope="row">From Date</th>
+                                                <td colspan="2"> {{expereion.From_Date}}</td>
+
+                                            </tr>
+                                            <tr>
+                                                <th scope="row">To Date</th>
+                                                <td colspan="2">{{expereion.To_Date}}</td>
+    
+                                            </tr>
+                                            <tr>
+                                                <th scope="row">Country</th>
+                                                <td colspan="2">{{expereion.Country}}</td>
+
+                                            </tr>
+                                        
+                                            <tr>
+                                                <th scope="row">City Name </th>
+                                                <td colspan="2">{{expereion.city_name}}</td>
+
+                                            </tr>
+                                            <tr>
+                                                <th scope="row">Location </th>
+                                                <td colspan="2">{{expereion.Location}}</td>
+
+                                            </tr>
+                                            <tr>
+                                                <th scope="row">Responsibilities </th>
+                                                <td colspan="2">{{expereion.Responsibilities}}</td>
+
+                                            </tr>
+                                        </tbody>
+                                            
+                                        </tbody>
+                                    </table>
 
 
                             
@@ -89,22 +161,57 @@
                             <div class="row">
                                 <br>
                                 {%for course in courses %}
-
-                                    <ul>
-                                        <li>Cours_Name: <span> {{course.Cours_Name}} </span></li>
-                                        <li>Company: <span>{{course.Company}}</span></li>
-                                        <li>Type: <span>{{course.Type}}</span></li>
-                                        <li>Country: <span> {{course.Country.name}} </span></li>
-                                        <li>city_name: <span>{{course.city_name}}</span></li>
-                                        <li>race_start: <span>{{course.race_start}}</span></li>
-                                        <li>race_finish: <span>{{course.race_finish}}</span></li>
-
-                                    </ul>
-                                    <br>
-                                    <br>
-                                    <br>
                                     
+                                    <table class="table"  >
+                                        <caption><a href="#"><i class="fas fa-edit"></i></a>
+                                            <a class="text-danger" href="#"><i class="fas fa-trash-alt"></i></a></caption>
+                                        <thead>
+                                            <tr>
+                                                <th   colspan="2" bgcolor="lightgray"‏‏ align="center">Courses</th>
+                                                
+                                               </tr>
 
+                                        </thead>
+                                        <tbody>
+                                            <tr>
+                                                <th scope="row">Cours Name</th>
+                                                <td>{{course.Cours_Name}}</td>
+                                            </tr>
+                                            <tr>
+                                                <th scope="row">Company</th>
+                                                <td>{{course.Company}}</td>
+
+                                            </tr>
+                                            <tr>
+                                                <th scope="row">Type</th>
+                                                <td colspan="2">{{course.Type}}</td>
+
+                                            </tr>
+                                            <tr>
+                                                <th scope="row">Country</th>
+                                                <td colspan="2"> {{course.Country.name}}</td>
+
+                                            </tr>
+                                            <tr>
+                                                <th scope="row">City Name</th>
+                                                <td colspan="2">{{course.city_name}}</td>
+
+                                            </tr>
+                                        </tbody>
+                                            <tr>
+                                                <th scope="row">From Date</th>
+                                                <td colspan="2">{{course.race_start}}</td>
+
+                                            </tr>
+                                        </tbody>
+                                            <tr>
+                                                <th scope="row">To Date</th>
+                                                <td colspan="2">{{course.race_finish}}</td>
+
+                                            </tr>
+                                            
+                                        </tbody>
+                                    </table>
 
                             
                                 {%endfor%}
@@ -116,10 +223,12 @@
                                 {%for academi in academic %}  
 
                                     <table class="table"  >
-                                        <caption>Monthly savings</caption>
+                                        <caption><a href="#"><i class="fas fa-edit"></i></a>
+                                            <a class="text-danger" href="#"><i class="fas fa-trash-alt"></i></a></caption>
                                         <thead>
                                             <tr>
                                                 <th   colspan="2" bgcolor="lightgray"‏‏ align="center">Academic Background</th>
+                                                
                                                </tr>
 
                                         </thead>
@@ -163,9 +272,9 @@
                                             <tr>
                                                 <th scope="row">GPA</th>
                                                 <td colspan="2">{{academi.GPA}}</td>
-
+                                                
                                             </tr>
-
+                                            
                                         </tbody>
                                     </table>
                                     {%endfor%}

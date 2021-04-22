@@ -1,20 +1,23 @@
 from django.shortcuts import render,redirect,reverse
 from .forms import SignupForm ,UserForm,ProfileForm
 from django.contrib.auth import authenticate ,login
+from django.contrib.auth.models import Group
 from accounts.models import *
 from .decorators import *
 
 # Create your views here.
 
 
-
+@notLoggedUsers
 def signup(request):
     if request.method=="POST":
         form = SignupForm(request.POST)
         if form.is_valid():
-            form.save()
+            user= form.save()
             username = form.cleaned_data['username']
             password = form.cleaned_data['password1']
+            group= Group.objects.get(name="Normal_Users")
+            user.groups.add(group)
             user = authenticate(username=username,password=password)
             login(request,user)
             return redirect('/accounts/profile')
@@ -47,7 +50,7 @@ def Profile(request):
 
 
 def profile_edit(request):
-    profilee = profile.objects.get(user=request.user)
+    profilee = Normal_Users.objects.get(user=request.user)
     if request.method=="POST":
          userform = UserForm(request.POST,instance=request.user)
          profileform = ProfileForm(request.POST,request.FILES,instance=profilee )
