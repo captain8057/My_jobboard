@@ -3387,7 +3387,7 @@ h3 {
 /* line 98, ../../Arafath/CL/December/235. Job board/HTML/scss/_job_list.scss */
 .job_listing_area .job_lists .single_jobs .jobs_right .apply_now a.heart_mark:hover {
   background: #00D363;
-  color: #fff;
+  color:  #00D363;
 }
 
 /* line 103, ../../Arafath/CL/December/235. Job board/HTML/scss/_job_list.scss */

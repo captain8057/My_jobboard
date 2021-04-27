@@ -45,6 +45,7 @@ INSTALLED_APPS = [
     "bootstrap4",
     "django_filters",
     "django_countries",
+    # "accounts.apps.AccountsConfig",
 
 
 ]
@@ -148,3 +149,6 @@ EMAIL_HOST_USER='abood8057@gmail.com'
 EMAIL_HOST_PASSWORD='gugnqefdlolpalww'
 EMAIL_USE_TLS= True
 EMAIL_PORT='587'
+
+
+GOOGLE_RECAPTCHA_SECRET_KEY ='6LfnQboaAAAAANZlt69T6xZevjYJ04Iauc6FsHzb'

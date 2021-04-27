@@ -2,8 +2,11 @@ from django.shortcuts import render,redirect,reverse
 from .forms import SignupForm ,UserForm,ProfileForm
 from django.contrib.auth import authenticate ,login
 from django.contrib.auth.models import Group
+from django.contrib import messages
 from accounts.models import *
 from .decorators import *
+import requests 
+from django.conf import settings 
 
 # Create your views here.
 
@@ -13,14 +16,22 @@ def signup(request):
     if request.method=="POST":
         form = SignupForm(request.POST)
         if form.is_valid():
-            user= form.save()
-            username = form.cleaned_data['username']
-            password = form.cleaned_data['password1']
-            group= Group.objects.get(name="Normal_Users")
-            user.groups.add(group)
-            user = authenticate(username=username,password=password)
-            login(request,user)
-            return redirect('/accounts/profile')
+            recaptcha_response = request.POST.get('g-recaptcha-response')
+            data = {
+                     'secret' : settings.GOOGLE_RECAPTCHA_SECRET_KEY,
+                     'response' : recaptcha_response
+                   }
+            r = requests.post('https://www.google.com/recaptcha/api/siteverify',data=data)
+            result = r.json()
+            if result['success']:
+                user= form.save()
+                username = form.cleaned_data['username']
+                password = form.cleaned_data['password1']
+                user = authenticate(username=username,password=password)
+                login(request,user)
+                return redirect('/accounts/profile')
+            else:
+                messages.error(request ,  ' invalid Recaptcha please try again!')  
     else:
         form = SignupForm()
     return render(request,'registration/signup.html',{'form':form})

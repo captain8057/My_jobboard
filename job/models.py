@@ -39,6 +39,7 @@ class Job(models.Model):  #tabdle
     category = models.ForeignKey('Category',on_delete=models.CASCADE)
     image = models.ImageField(upload_to=image_upload)
     slug = models.SlugField(blank=True , null= True)
+    like = models.ManyToManyField(User , blank=True)
 
 
 

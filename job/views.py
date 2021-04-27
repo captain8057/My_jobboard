@@ -10,7 +10,7 @@ from accounts.decorators import allowedUsers,notLoggedUsers
 
 
 # Create your views here.
-@allowedUsers(allowedGroups=['Admin','Normal_Users','Organisations'])
+
 def job_list(request):
     job_list = Job.objects.all()
 
@@ -59,4 +59,19 @@ def add_job(request):
 
 
 
+def like_or_unlike(request,id):
+    job = Job.objects.get(id=id)
 
+    if request.user in job.like.all():
+        job.like.remove(request.user)
+    
+    else:
+        job.like.add(request.user)
+    
+    return redirect(reverse('joburl:job_detailurl',kwargs={'id':job.id}))
+
+
+
+def user_favourites(request):
+    user_favourites = Job.objects.filter(like=request.user)
+    return render(request,'accounts:profile',{'user_favourites':user_favourites})

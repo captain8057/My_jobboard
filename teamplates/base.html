@@ -78,9 +78,11 @@
                                     </div>
 
                                 {% endif %}
+                                {% ifequal user.groups.all.0.name 'Organisations'  %}
                                     <div class="d-none d-lg-block">
                                         <a class="boxed-btn3" href="{%url 'joburl:add_job'%}">Post a Job</a>
                                     </div>
+                                {% endifequal %}
                                 </div>
                             </div>
                             <div class="col-12">
