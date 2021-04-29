@@ -15,7 +15,7 @@ class JobForm(ModelForm):
     class Meta:
         model = Job
         fields = '__all__' 
-        exclude =('slug','onwer')
+        exclude =('slug','onwer','like')
 
 
       

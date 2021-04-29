@@ -25,6 +25,11 @@ def job_list(request):
     return render(request,'job/job_list.html',context)
 
 
+def home_page(request):
+     return render(request,'job/index.html')
+    
+
+
 def job_detail(request , id):
     job_detail = Job.objects.get(id=id)
 
@@ -75,3 +80,5 @@ def like_or_unlike(request,id):
 def user_favourites(request):
     user_favourites = Job.objects.filter(like=request.user)
     return render(request,'accounts:profile',{'user_favourites':user_favourites})
+
+

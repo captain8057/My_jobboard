@@ -278,6 +278,30 @@
                                         </tbody>
                                     </table>
                                     {%endfor%}
+
+
+                                    
+                                    <table class="table"  >
+                                        <caption></caption>
+                                            <thead>
+                                                <tr>
+                                                    <th   colspan="2" bgcolor="lightgray"‏‏ align="center">Likes</th>
+                                                    <td   colspan="2" bgcolor="lightgray"‏‏ align="center">Edite</td>
+                                                    
+                                                </tr>
+                                                
+                                            </thead>
+                                            <tbody>
+                                            {%for likes in like %}  
+                                            <tr>
+                                                <th scope="row">Job Name</th>
+                                                <td><a href="{% url 'joburl:like' likes.id %}">{{likes}}</a> </td>
+                                                <td><a class="text-danger" href="{% url 'joburl:like' likes.id %}"><i class="fas fa-trash-alt"></i></a> </td>
+                                            </tr>
+                                            
+                                            {%endfor%}
+                                        </tbody>
+                                    </table>
                         </div>  
                         </div>
                     </div class="p-5">

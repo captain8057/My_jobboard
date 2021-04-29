@@ -7,6 +7,7 @@ from accounts.models import *
 from .decorators import *
 import requests 
 from django.conf import settings 
+from job.models import Job
 
 # Create your views here.
 
@@ -49,10 +50,11 @@ def Profile(request):
         expereions = Expereions.objects.filter(user=request.user)
         courses = Courses.objects.filter(user=request.user)
         academic = Academic_Background.objects.filter(user=request.user)
+        like = Job.objects.filter(like=request.user)
     else:
         org = Organisations.objects.get(user=request.user)
     if group=="Normal_Users":
-        return render(request,'accounts/profile.html',{'Profile':Profile,'group':group,'expereions':expereions,'courses':courses,'academic':academic})
+        return render(request,'accounts/profile.html',{'Profile':Profile,'group':group,'expereions':expereions,'courses':courses,'academic':academic ,'like':like})
     else:
         return render(request,'accounts/Org_profile.html',{'org':org,'group':group})
 

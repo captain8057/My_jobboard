@@ -1,6 +1,7 @@
 from django.db import models
 from django_slugify_processor.text import slugify
 from django.contrib.auth.models import User
+from django_countries.fields import CountryField
 # Create your models here.
 
 
@@ -40,6 +41,8 @@ class Job(models.Model):  #tabdle
     image = models.ImageField(upload_to=image_upload)
     slug = models.SlugField(blank=True , null= True)
     like = models.ManyToManyField(User , blank=True)
+    Country = CountryField(null=True)
+    Place =  models.CharField(max_length=100 , null= True,blank=True)
 
 
 
