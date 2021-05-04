@@ -1,6 +1,6 @@
 from django.shortcuts import render,redirect
 from django.urls import reverse
-from .models import Job
+from .models import *
 from django.core.paginator import Paginator
 from .form import applyform ,JobForm
 from django.contrib.auth.decorators import login_required
@@ -26,7 +26,15 @@ def job_list(request):
 
 
 def home_page(request):
-     return render(request,'job/index.html')
+    job_list = Job.objects.all()
+    cate= Category.objects.all()
+    cate_num= Job.objects.filter(category__in=cate)
+    # for cat in cate:
+    #     cate_num= Job.objects.filter(category__exact=cat).count()
+
+    print(cate_num)
+    context={'job_list': job_list,'cate':cate , 'cate_num':cate_num }
+    return render(request,'job/index.html',context)
     
 
 
@@ -80,5 +88,4 @@ def like_or_unlike(request,id):
 def user_favourites(request):
     user_favourites = Job.objects.filter(like=request.user)
     return render(request,'accounts:profile',{'user_favourites':user_favourites})
-
 
