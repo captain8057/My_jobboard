@@ -10,4 +10,4 @@ class JobFilters(django_filters.FilterSet):
     class Meta:
         model = Job
         fields = '__all__'
-        exclude = ['image','slug','onwer']
+        exclude = ['image','slug','onwer','like','Country']

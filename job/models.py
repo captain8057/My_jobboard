@@ -43,6 +43,7 @@ class Job(models.Model):  #tabdle
     like = models.ManyToManyField(User , blank=True)
     Country = CountryField(null=True)
     Place =  models.CharField(max_length=100 , null= True,blank=True)
+    Dead_line= models.DateTimeField(null= True)
 
 
 

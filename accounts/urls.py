@@ -12,6 +12,7 @@ urlpatterns = [
     path('profile',views.Profile ,name='profile'),
     path('login',views.login ,name='login'),
     path('profile/edit',views.profile_edit ,name='profile_edit'),
+    path('Orgprofile/edit',views.org_profile_edit ,name='OrgProfileEdit'),
 
 
 ]

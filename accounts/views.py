@@ -1,5 +1,5 @@
 from django.shortcuts import render,redirect,reverse
-from .forms import SignupForm ,UserForm,ProfileForm
+from .forms import SignupForm ,UserForm,ProfileForm,Org_ProfileForm,Org_UserForm
 from django.contrib.auth import authenticate ,login
 from django.contrib.auth.models import Group
 from django.contrib import messages
@@ -44,7 +44,7 @@ def signup(request):
 
 def Profile(request):
 
-    group= request.user.groups.all()[0].name
+    group=  request.user.groups.all()[0].name
     if group=="Normal_Users":
         Profile = Normal_Users.objects.get(user=request.user)
         expereions = Expereions.objects.filter(user=request.user)
@@ -61,7 +61,7 @@ def Profile(request):
 
 
 
-
+@allowedUsers(allowedGroups=['Normal_Users'])
 def profile_edit(request):
     profilee = Normal_Users.objects.get(user=request.user)
     if request.method=="POST":
@@ -98,3 +98,22 @@ def normal_users(request):
     group= request.user.groups.all()[0].name
     return render(request,'accounts/profile.html',{'Profile':Profile,'group':group})
 
+@allowedUsers(allowedGroups=['Admin','Organisations'])
+def org_profile_edit(request):
+    profilee = Organisations.objects.get(user=request.user)
+    if request.method=="POST":
+         userform = Org_UserForm(request.POST,instance=request.user)
+         profileform = Org_ProfileForm(request.POST,request.FILES,instance=profilee )
+         if userform.is_valid() and profileform.is_valid():
+             userform.save()
+             myprofile= profileform.save(commit=False)
+             myprofile.user= request.user
+             myprofile.save()
+             return redirect(reverse('accounts:profile'))
+
+
+    else:
+         userform=Org_UserForm(instance=request.user)
+         profileform = Org_ProfileForm(instance=profilee)
+
+    return render(request,'accounts/org_profile_edit.html',{'userform':userform , 'profileform':profileform})

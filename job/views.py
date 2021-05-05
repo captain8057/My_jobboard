@@ -2,7 +2,7 @@ from django.shortcuts import render,redirect
 from django.urls import reverse
 from .models import *
 from django.core.paginator import Paginator
-from .form import applyform ,JobForm
+from .form import applyform ,JobForm 
 from django.contrib.auth.decorators import login_required
 from .filters import JobFilters
 from accounts.decorators import allowedUsers,notLoggedUsers
@@ -12,7 +12,7 @@ from accounts.decorators import allowedUsers,notLoggedUsers
 # Create your views here.
 
 def job_list(request):
-    job_list = Job.objects.all()
+    job_list = Job.objects.all().order_by('published_at')
 
 
     myfilter = JobFilters(request.GET,queryset=job_list)
@@ -26,14 +26,17 @@ def job_list(request):
 
 
 def home_page(request):
-    job_list = Job.objects.all()
+    job_list = Job.objects.all().order_by('-published_at')[0:5]
+    job = Job.objects.all()
     cate= Category.objects.all()
-    cate_num= Job.objects.filter(category__in=cate)
-    # for cat in cate:
-    #     cate_num= Job.objects.filter(category__exact=cat).count()
+    # cate_num= Job.objects.filter(category__in=cate)
+    Cat_Dict={}
+    for cat in cate:
+         cate_num= Job.objects.filter(category__exact=cat).count()
+         Cat_Dict[cat]=cate_num
 
-    print(cate_num)
-    context={'job_list': job_list,'cate':cate , 'cate_num':cate_num }
+    print(cate_num,Cat_Dict)
+    context={'job_list': job_list,'cate':cate , 'cate_num':cate_num , 'Cat_Dict':Cat_Dict,'job':job}
     return render(request,'job/index.html',context)
     
 
@@ -70,6 +73,23 @@ def add_job(request):
 
    return render(request,'job/add_job.html',{'form':form})
 
+@allowedUsers(allowedGroups=['Admin','Organisations'])
+def edit_job(request , id):
+    job = Job.objects.get(id=id)
+    form = JobForm(instance=job) 
+    if request.method=='POST':
+           form = JobForm(request.POST ,instance=job)
+           if form.is_valid():
+                myform =form.save(commit=False)
+                myform.onwer= request.user
+                myform.save()
+                return redirect(reverse('joburl:Home'))
+    
+
+
+    return render(request,'job/job_edit.html',{'form':form})
+
+    
 
 
 def like_or_unlike(request,id):

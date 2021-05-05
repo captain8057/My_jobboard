@@ -220,9 +220,9 @@
                         <div class="job_content">
                             <div class="row">
                                 <br>
-                                {%for academi in academic %}  
+                                 
 
-                                    <table class="table"  >
+                                    <!-- <table class="table"  >
                                         <caption><a href="#"><i class="fas fa-edit"></i></a>
                                             <a class="text-danger" href="#"><i class="fas fa-trash-alt"></i></a></caption>
                                         <thead>
@@ -276,38 +276,79 @@
                                             </tr>
                                             
                                         </tbody>
-                                    </table>
-                                    {%endfor%}
-
-
-                                    
+                                    </table>-->
+                                    <div class="section-top-border">
+                                    <div class="row">
                                     <table class="table"  >
-                                        <caption></caption>
+                                            <caption><a href="#"><i class="fas fa-edit"></i></a>
+                                                <a class="text-danger" href="#"><i class="fas fa-trash-alt"></i></a></caption>
                                             <thead>
                                                 <tr>
-                                                    <th   colspan="2" bgcolor="lightgray"‏‏ align="center">Likes</th>
-                                                    <td   colspan="2" bgcolor="lightgray"‏‏ align="center">Edite</td>
                                                     
-                                                </tr>
-                                                
-                                            </thead>
-                                            <tbody>
-                                            {%for likes in like %}  
+                                                    
+                                       <th>            
+                                     <div >
+
+                                        <div class="typography">
+                                            <h3 class="mb-20">Academic Background</h3>
+                                        </div>
+                                        <br>
+                                        {%for academi in academic %} 
+                                        <div class="">
+                                    <ol class="ordered-list">
+                                       
+                                        <li><span>{{academi.Certificate_Type}} Degree IN {{academi.specialization}}</span>
+                                            <ol class="ordered-list-alpha">
+                                                <li><span>Unversity: {{academi.University_Name}}</span>
+                                                <li><span>Location: {{academi.Location}}</span>
+                                                <li><span>Duration: {{academi.Duration}}</span>
+                                                <li><span>From: {{academi.From_Date}}</span>
+                                                <li><span>To: {{academi.To_Date}}</span>
+                                                <li><span>GPA: {{academi.GPA}}</span>
+                                            
+                                                </li>
+                                            </ol>
+                                        </li>
+                                    
+                                    </ol>
+                                </div>
+                                {%endfor%} 
+                            </div>
+                        </th>
+                        </tr>
+                            </div>
+                            </div>
+                                
+                                
+
+                                
+                                <table class="table"  >
+                                    <caption></caption>
+                                        <thead>
                                             <tr>
-                                                <th scope="row">Job Name</th>
-                                                <td><a href="{% url 'joburl:like' likes.id %}">{{likes}}</a> </td>
-                                                <td><a class="text-danger" href="{% url 'joburl:like' likes.id %}"><i class="fas fa-trash-alt"></i></a> </td>
+                                                <th   colspan="2" bgcolor="lightgray"‏‏ align="center">Likes</th>
+                                                <td   colspan="2" bgcolor="lightgray"‏‏ align="center">Edite</td>
+                                                
                                             </tr>
                                             
-                                            {%endfor%}
-                                        </tbody>
-                                    </table>
-                        </div>  
-                        </div>
-                    </div class="p-5">
-                    <a href="{% url 'accounts:profile_edit'%}" class="boxed-btn3 w-100">Edite Profile</a>
-                   <div>
-                   </div>
+                                        </thead>
+                                        <tbody>
+                                        {%for likes in like %}  
+                                        <tr>
+                                            <th scope="row">Job Name</th>
+                                            <td><a href="{% url 'joburl:like' likes.id %}">{{likes}}</a> </td>
+                                            <td><a class="text-danger" href="{% url 'joburl:like' likes.id %}"><i class="fas fa-trash-alt"></i></a> </td>
+                                        </tr>
+                                        
+                                        {%endfor%}
+                                    </tbody>
+                                </table>
+                    </div>  
+                    </div>
+                </div class="p-5">
+                <a href="{% url 'accounts:profile_edit'%}" class="boxed-btn3 w-100">Edite Profile</a>
+               <div>
+               </div>
                     
                 </div>
             </div>

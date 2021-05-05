@@ -40,7 +40,13 @@
                             </div>
                             <div class="jobs_right">
                                 <div class="apply_now">
+                                    {% ifequal user.groups.all.0.name 'Organisations'  %}
+                                    
+                                    <a href="{% url 'joburl:edit_job' job.id %}"><i class="fas fa-edit"></i></a>
+                                    {%else%}
                                     <a class="heart_mark" href="{% url 'joburl:like' job.id %}" > <i class="ti-heart"></i> </a>
+                                {% endifequal %}
+                                    
                                 </div>
                             </div>
                         </div>
@@ -74,6 +80,7 @@
                             <h4>Benefits</h4>
                             <p>There are many variations of passages of Lorem Ipsum available, but the majority have suffered alteration in some form, by injected humour, or randomised words which don't look even slightly believable. If you are going to use a passage of Lorem Ipsum, you need to be sure there isn't anything embarrassing.</p>
                         </div>
+                        
                     </div>
                     <div class="apply_job_form white-bg">
                         <h4>Apply for the job</h4>
@@ -81,7 +88,9 @@
                             {% csrf_token %}
                             {% bootstrap_form form %}
                             {% buttons %}
+                            {% ifnotequal user.groups.all.0.name 'Organisations'  %}
                                <button class="boxed-btn3 w-100" type="submit">Apply Now</button>
+                               {%endifnotequal%}
                             {% endbuttons %}
                         </form>
                     </div>
@@ -98,6 +107,7 @@
                                 <li>Salary: <span> {{job.salary}} $</span></li>
                                 <li>Location: <span>{{job.Place}}, {{job.Country.name}}</span></li>
                                 <li>Job Nature: <span>{{job.job_type}}</span></li>
+                                <li>Publisher: <span>{{job.onwer}}</span></li>
                             </ul>
                         </div>
                     </div>

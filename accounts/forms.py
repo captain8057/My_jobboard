@@ -1,5 +1,5 @@
 from django.forms import ModelForm
-from django.contrib.auth.models import User
+from django.contrib.auth.models import User 
 from django.contrib.auth.forms import UserCreationForm
 from .models import *
 
@@ -22,6 +22,8 @@ class UserForm(ModelForm):
         exclude = ['user']
 
 
+
+
 class ProfileForm(ModelForm):
     class Meta:
        model = Normal_Users
@@ -29,3 +31,17 @@ class ProfileForm(ModelForm):
        exclude = ['user']
        
         
+
+class Org_ProfileForm(ModelForm):
+    class Meta:
+       model = Organisations
+       fields = "__all__"
+       exclude = ['user']
+
+
+class Org_UserForm(ModelForm):
+    
+    class Meta:
+        model = User
+        fields = ["username","email"]
+        exclude = ['user',"first_name","last_name"]
