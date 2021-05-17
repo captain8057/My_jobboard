@@ -6,13 +6,14 @@ from .form import applyform ,JobForm
 from django.contrib.auth.decorators import login_required
 from .filters import JobFilters
 from accounts.decorators import allowedUsers,notLoggedUsers
+from django.contrib import messages
 
 
 
 # Create your views here.
 
 def job_list(request):
-    job_list = Job.objects.all().order_by('published_at')
+    job_list = Job.objects.all().order_by('-published_at')
 
 
     myfilter = JobFilters(request.GET,queryset=job_list)
@@ -66,6 +67,7 @@ def add_job(request):
           myform =form.save(commit=False)
           myform.onwer= request.user
           myform.save()
+          messages.success(request, f'Your Job Added!')
           return redirect(reverse('joburl:job_list'))
    else:
        form =JobForm()

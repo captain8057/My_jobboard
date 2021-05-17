@@ -2,6 +2,7 @@ from django.db import models
 from django_slugify_processor.text import slugify
 from django.contrib.auth.models import User
 from django_countries.fields import CountryField
+from PIL import Image
 # Create your models here.
 
 
@@ -52,6 +53,7 @@ class Job(models.Model):  #tabdle
         self.slug = slugify(self.title) 
         #logic
         super(Job,self).save(*args,**kwargs)
+        
 
 
     #return name of job in admin panal

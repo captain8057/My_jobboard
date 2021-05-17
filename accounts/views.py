@@ -109,6 +109,7 @@ def org_profile_edit(request):
              myprofile= profileform.save(commit=False)
              myprofile.user= request.user
              myprofile.save()
+             messages.success(request, f'Profile Edited!')
              return redirect(reverse('accounts:profile'))
 
 

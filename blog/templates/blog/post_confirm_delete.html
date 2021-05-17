@@ -1,0 +1,18 @@
+{% extends "base.html" %}
+{% load static %}
+{% load bootstrap4 %}
+    
+
+  {% block body %}
+        <form method="POST">
+            {% csrf_token %}
+            <fieldset class="form-group">
+                <legend class="border-bottom mb-4">Delete Post</legend>
+                <h2>Are you sure you want to delete the post "{{ object.title }}"</h2>
+            </fieldset>
+            <div class="form-group">
+                <a class="btn btn-outline-danger" href="{% url 'blog:blog-list' %}">Yes, Delete</button>
+                <a class="btn btn-outline-secondary" href="{% url 'blog:blog-single' post.pk %}">Cancel</a>
+            </div>
+        </form>
+{% endblock body %}

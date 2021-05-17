@@ -60,9 +60,9 @@
                                             <li><a href="/">home</a></li>
                                             <li><a href="{%url 'joburl:job_list'%}">Browse Job</a></li>
                                             <li><a href="{%url 'contacts:contact'%}">Contact</a></li>
-                                            <li><a href="#">blog <i class="ti-angle-down"></i></a>
+                                            <li><a href="{%url 'blog:blog-list'%}">blog <i class="ti-angle-down"></i></a>
                                                 <ul class="submenu">
-                                                    <li><a href="blog.html">blog</a></li>
+                                                    <li><a href="{%url 'blog:blog-list'%}">blog</a></li>
                                                     <li><a href="single-blog.html">single-blog</a></li>
                                                 </ul>
                                             </li>
@@ -100,12 +100,25 @@
                             <div class="col-12">
                                 <div class="mobile_menu d-block d-lg-none"></div>
                             </div>
+                            <div class="row">
+                                <div class="col-md-8">
+                                    {% if messages %}
+                                        {% for message in messages %}
+                                        <div class="alert alert-{{ message.tags }}">
+                                            {{ message }}
+                                        </div>
+                                        {% endfor %}
+                                    {% endif %}
+                                    {% block content %}{% endblock %}
+                                </div>
+                            </div>
                         </div>
                     </div>
 
                 </div>
             </div>
         </div>
+        
     </header>
     <!-- header-end -->
 
@@ -127,9 +140,9 @@
                                 </a>
                             </div>
                             <p>
-                                finloan@support.com <br>
-                                +10 873 672 6782 <br>
-                                600/D, Green road, NewYork
+                                AbdullahAldyab96@gmail.com <br>
+                                +352 681 123 831 <br>
+                                University road, Azaz
                             </p>
                             <div class="socail_links">
                                 <ul>

@@ -43,8 +43,10 @@ INSTALLED_APPS = [
     "job",
     "contact",
     "bootstrap4",
+    "blog",
     "django_filters",
     "django_countries",
+    'crispy_forms',
     # "accounts.apps.AccountsConfig",
 
 
@@ -152,3 +154,8 @@ EMAIL_PORT='587'
 
 
 GOOGLE_RECAPTCHA_SECRET_KEY ='6LfnQboaAAAAANZlt69T6xZevjYJ04Iauc6FsHzb'
+
+
+CRISPY_TEMPLATE_PACK = 'bootstrap4'
+
+LOGIN_REDIRECT_URL = 'joburl:Home'
