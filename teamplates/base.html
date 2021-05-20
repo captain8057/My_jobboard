@@ -100,18 +100,7 @@
                             <div class="col-12">
                                 <div class="mobile_menu d-block d-lg-none"></div>
                             </div>
-                            <div class="row">
-                                <div class="col-md-8">
-                                    {% if messages %}
-                                        {% for message in messages %}
-                                        <div class="alert alert-{{ message.tags }}">
-                                            {{ message }}
-                                        </div>
-                                        {% endfor %}
-                                    {% endif %}
-                                    {% block content %}{% endblock %}
-                                </div>
-                            </div>
+                         
                         </div>
                     </div>
 
@@ -264,6 +253,7 @@
 
 
     <script src="{% static 'js/main.js' %}"></script>
+    <script src="countries.js"></script>
 
 
 	<script>

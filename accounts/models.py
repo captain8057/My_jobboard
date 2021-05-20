@@ -84,6 +84,7 @@ class Normal_Users(models.Model):
 
 class Organisations(models.Model):
     user = models.OneToOneField(User, on_delete=models.CASCADE)
+    About= models.TextField(max_length=1000,null=True)
     Name =  models.CharField(null=True, max_length=50)
     Photo = models.ImageField(upload_to="profile/")
     city_name = models.ForeignKey("city",on_delete=models.CASCADE , null=True)

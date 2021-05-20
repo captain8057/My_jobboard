@@ -135,18 +135,29 @@
                     <div class="col-lg-12 col-md-12">
                         <div class="single_jobs white-bg d-flex justify-content-between">
                             <div class="jobs_left d-flex align-items-center">
-                                <div class="thumb">
-                                    <img src="{{job.image.url}}" alt=""  style="max-width:60px;">
+                                <div style=" float: left;
+                                width: 82px;
+                                height: 82px;
+                                -webkit-border-radius: 5px;
+                                -moz-border-radius: 5px;
+                                border-radius: 5px;
+                                background: #F5F7FA;
+                                margin-right: 25px;
+                                border: 1px solid #F0F0F0;">
+                                    <img src="{{job.onwer.organisations.Photo.url}}" alt=""  style="max-width:80px;">
                                 </div>
                                 <div class="jobs_conetent">
                                     <a href="{% url 'joburl:job_detailurl' job.id%}"><h4>{{job}}</h4></a>
                                     <div class="links_locat d-flex align-items-center">
                                         <div class="location">
-                                            <p> <i class="fa fa-map-marker"></i> {{job.Country.name}} <link rel="stylesheet" href="{% static 'flags/sprite.css' %}">
+                                            <p> <i class="fa fa-map-marker"></i> {{job.Place}}, <link rel="stylesheet" href="{% static 'flags/sprite.css' %}">
                                                 <i class="{{ job.Country.flag_css }}"></i></span></li></p>
                                         </div>
                                         <div class="location">
                                             <p> <i class="fa fa-clock-o"></i> {{job.job_type}}</p>
+                                        </div>
+                                        <div class="location">
+                                            <p style="max-width:80px;"> <i class="fas fa-user-tie"></i>{{job.onwer.organisations.Name}}   </p>
                                         </div>
                                     </div>
                                 </div>

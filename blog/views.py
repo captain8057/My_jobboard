@@ -8,6 +8,7 @@ from django.views.generic import (
     DeleteView
 )
 from .models import Post
+from .forms import PostForm
 # Create your views here.
 
 class PostListView(ListView):
@@ -24,7 +25,8 @@ class PostListView(ListView):
     
 class PostCreateView(LoginRequiredMixin, CreateView):
     model = Post
-    fields = ['title', 'content','image','Hyper_Text','tags']
+    form_class = PostForm
+    # fields = ['title', 'content','image','Hyper_Text','tags']
     template_name = 'blog/new_blog.html'
 
     def form_valid(self, form):

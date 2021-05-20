@@ -1,4 +1,8 @@
 {
     "git.ignoreLimitWarning": true,
+<<<<<<< Updated upstream
     "python.pythonPath": "E:\\job-board\\job-board\\Scripts\\python.exe"
+=======
+    "python.pythonPath": "C:\\Users\\asus\\Desktop\\job_boards\\Scripts\\python.exe"
+>>>>>>> Stashed changes
 }

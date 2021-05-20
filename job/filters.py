@@ -11,3 +11,12 @@ class JobFilters(django_filters.FilterSet):
         model = Job
         fields = '__all__'
         exclude = ['image','slug','onwer','like','Country']
+
+
+class HomeJobFilters(django_filters.FilterSet):
+    
+    title = django_filters.CharFilter(lookup_expr='icontains')
+    class Meta:
+        model = Job
+        fields = ['Country','category']
+        

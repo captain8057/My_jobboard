@@ -6,6 +6,7 @@ from .form import applyform ,JobForm
 from django.contrib.auth.decorators import login_required
 from .filters import JobFilters
 from accounts.decorators import allowedUsers,notLoggedUsers
+from accounts.models import Normal_Users,Organisations
 from django.contrib import messages
 
 
@@ -22,7 +23,7 @@ def job_list(request):
     paginator = Paginator(job_list, 5) # Show 25 contacts per page.
     page_number = request.GET.get('page')
     page_obj = paginator.get_page(page_number)
-    context={'jobs': page_obj ,'myfilter':myfilter}
+    context={'jobs': page_obj ,'myfilter':myfilter,'job_list':job_list}
     return render(request,'job/job_list.html',context)
 
 
@@ -44,21 +45,23 @@ def home_page(request):
 
 def job_detail(request , id):
     job_detail = Job.objects.get(id=id)
-
+    group= request.user.groups.all()[0].name
+    if group =='Normal_Users':
+        user_detail = Normal_Users.objects.get(user=request.user)
+    else:
+         user_detail = Organisations.objects.get(user=request.user)
     if request.method=='POST':
       form = applyform(request.POST ,request.FILES)
       if form.is_valid():
           myform =form.save(commit=False)
           myform.job= job_detail
           myform.save()
-
-
     else:
-        form = applyform()
+        form = applyform(instance=user_detail)
     context={'job': job_detail ,'form':form}
     return render(request,'job/job_detail.html',context)
 
-
+@login_required()
 @allowedUsers(allowedGroups=['Admin','Organisations'])
 def add_job(request):
    if request.method=='POST':
@@ -78,14 +81,17 @@ def add_job(request):
 @allowedUsers(allowedGroups=['Admin','Organisations'])
 def edit_job(request , id):
     job = Job.objects.get(id=id)
-    form = JobForm(instance=job) 
-    if request.method=='POST':
-           form = JobForm(request.POST ,instance=job)
-           if form.is_valid():
-                myform =form.save(commit=False)
-                myform.onwer= request.user
-                myform.save()
-                return redirect(reverse('joburl:Home'))
+    if request.user.username== job.onwer.username:
+        form = JobForm(instance=job) 
+        if request.method=='POST':
+            form = JobForm(request.POST ,instance=job)
+            if form.is_valid():
+                    myform =form.save(commit=False)
+                    myform.onwer= request.user
+                    myform.save()
+                    return redirect(reverse('joburl:Home'))
+    else:
+        return redirect(reverse('joburl:job_detailurl',kwargs={'id':job.id}))
     
 
 
@@ -93,7 +99,7 @@ def edit_job(request , id):
 
     
 
-
+@login_required()
 def like_or_unlike(request,id):
     job = Job.objects.get(id=id)
 

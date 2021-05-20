@@ -3,6 +3,7 @@ from django_slugify_processor.text import slugify
 from django.contrib.auth.models import User
 from django_countries.fields import CountryField
 from PIL import Image
+from django.utils import timezone
 # Create your models here.
 
 
@@ -30,11 +31,10 @@ class Job(models.Model):  #tabdle
 
     onwer = models.ForeignKey(User, on_delete=models.CASCADE,related_name='onwer_job')
     title = models.CharField(max_length=100) #column
-# we do make migration after create table and coulmn to let django check the table and coulmn able to creat and add to DB and after that we do migrate
-    #location
     job_type = models.CharField(max_length=20 , choices= Job_Type)
-    descripyion = models.TextField(max_length=1000)
-    published_at = models.DateTimeField(auto_now=True)
+    descripyion = models.TextField()
+    published_at = models.DateTimeField(default=timezone.now,null=True)
+    last_Update = models.DateTimeField(auto_now=True,null=True)
     Vacancy = models.IntegerField(default=1)
     salary = models.IntegerField(default=0)
     experience = models.IntegerField(default=1)
@@ -72,15 +72,5 @@ class Category(models.Model):
 
 class apply(models.Model):
     job = models.ForeignKey(Job, on_delete=models.CASCADE,related_name='apply_job')
-    name = models.CharField(max_length=30)
-    email = models.EmailField(max_length=100)
-    websit = models.URLField()
-    cv = models.FileField(upload_to='apply/')
-    cover_leteer = models.TextField(max_length=500)
-    created_at =models.DateTimeField(auto_now=True)
-
-
-
-    def __str__(self):
-        return self.name
+    Candidate= models.ForeignKey(User, on_delete=models.CASCADE,related_name='apply_job',null=True)
     

@@ -7,6 +7,7 @@ from accounts.models import *
 from .decorators import *
 import requests 
 from django.conf import settings 
+from django.contrib.auth.decorators import login_required
 from job.models import Job
 
 # Create your views here.
@@ -41,7 +42,7 @@ def signup(request):
 
 
 
-
+@login_required()
 def Profile(request):
 
     group=  request.user.groups.all()[0].name

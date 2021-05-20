@@ -1,4 +1,5 @@
-{% extends 'base.html' %}   
+{% extends 'base.html' %}  
+{% load static %} 
 {% load bootstrap4 %}
     {% block body %}
 
@@ -23,29 +24,41 @@
                     <div class="job_details_header">
                         <div class="single_jobs white-bg d-flex justify-content-between">
                             <div class="jobs_left d-flex align-items-center">
-                                <div class="thumb">
-                                    <img src="{{job.image.url}}" alt=""  style="max-width:60px;">
+                                <div style="float: left;
+                                width: 82px;
+                                height: 82px;
+                                -webkit-border-radius: 5px;
+                                -moz-border-radius: 5px;
+                                border-radius: 5px;
+                                background: #F5F7FA;
+                                margin-right: 25px;
+                                border: 1px solid #F0F0F0;">
+                                    <img src="{{job.onwer.organisations.Photo.url}}" alt=""  style="max-width:80px;">
                                 </div>
                                 <div class="jobs_conetent">
-                                    <a href="#"><h4>{{job.title}}</h4></a>
+                                    <a href="#"><h4>{{job.title|title}}</h4></a>
                                     <div class="links_locat d-flex align-items-center">
                                         <div class="location">
-                                            <p> <i class="fa fa-map-marker"></i> {{job.Place}}, {{job.Country.name}}</p>
+                                            <p> <i class="fa fa-map-marker"></i> {{job.Place}}, <link rel="stylesheet" href="{% static 'flags/sprite.css' %}">
+                                                <i class="{{ job.onwer.organisations.Headquarters.flag_css }}"></i></span></p>
                                         </div>
                                         <div class="location">
-                                            <p> <i class="fa fa-clock-o"></i>{{job.job_type}}   </p>
+                                            <p> <i class="fa fa-clock-o"></i>{{job.job_type|title}}   </p>
+                                        </div>
+                                        <div class="location">
+                                            <p> <i class="fas fa-user-tie"></i>{{job.onwer.organisations.Name}}   </p>
                                         </div>
                                     </div>
                                 </div>
                             </div>
                             <div class="jobs_right">
                                 <div class="apply_now">
-                                    {% ifequal user.groups.all.0.name 'Organisations'  %}
+                                    {% if user.groups.all.0.name == 'Organisations' and job.onwer.username == request.user.username %}
                                     
                                     <a href="{% url 'joburl:edit_job' job.id %}"><i class="fas fa-edit"></i></a>
                                     {%else%}
                                     <a class="heart_mark" href="{% url 'joburl:like' job.id %}" > <i class="ti-heart"></i> </a>
-                                {% endifequal %}
+                                {% endif %}
                                     
                                 </div>
                             </div>
@@ -53,8 +66,12 @@
                     </div>
                     <div class="descript_wrap white-bg">
                         <div class="single_wrap">
+                            <h4>About Us</h4>
+                            <p>{{job.onwer.organisations.About|linebreaks }}</p>
+                        </div>
+                        <div class="single_wrap">
                             <h4>Job description</h4>
-                            <p>{{job.descripyion|linebreaksbr |linenumbers }}</p>
+                            <p>{{job.descripyion|linenumbers |linebreaksbr  }}</p>
                         </div>
                         <div class="single_wrap">
                             <h4>Responsibility</h4>
@@ -102,12 +119,15 @@
                         </div>
                         <div class="job_content">
                             <ul>
-                                <li>Published on: <span>{{job.published_at| date:'d M o'}}</span></li>
+                                <li>Published on: <span>{{job.published_at|date:"M d Y"}}</span></li>
+                                <li>last Update: <span>{{job.last_Update }}</span></li>
                                 <li>Vacancy: <span>{{job.Vacancy}} Position</span></li>
                                 <li>Salary: <span> {{job.salary}} $</span></li>
                                 <li>Location: <span>{{job.Place}}, {{job.Country.name}}</span></li>
                                 <li>Job Nature: <span>{{job.job_type}}</span></li>
                                 <li>Publisher: <span>{{job.onwer}}</span></li>
+                                <li>Dead Line: <span>{{job.Dead_line}}</span></li>
+                                
                             </ul>
                         </div>
                     </div>
