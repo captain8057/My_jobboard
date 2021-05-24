@@ -47,10 +47,36 @@ INSTALLED_APPS = [
     "django_filters",
     "django_countries",
     'crispy_forms',
+    "ckeditor",
+    "ckeditor_uploader",
     # "accounts.apps.AccountsConfig",
 
 
 ]
+CKEDITOR_UPLOAD_PATH="ckeditoe-files"
+CKEDITOR_CONFIGS = {
+   
+    "custom": {
+        "toolbar": "Custom",
+        "extraPlugins": ",".join(["codesnippet","youtube"]),
+        "toolbar_Custom": [
+            ["Styles","Format",'Font', 'FontSize'],
+            ['Cut', 'Copy', 'Paste',"PasteText"],
+            ['NumberedList', 'BulletedList', '-', 'JustifyLeft', 'JustifyCenter', 'JustifyRight', 'JustifyBlock'],
+            ["TextColor","BGColor"],
+            ['Bold','Italic',"Underline","Strike","BidiLtr","BidiRtl",'Subscript', 'Superscript'],
+            ["Outdent","Indent","RemoveFormat"],
+            ["Undo","Redo","HorizontalRule",'Find', 'Replace','SelectAll'],
+            ["Link","Unlink","Anchor"],
+            ["Youtube","Image","Flash","Table","CodeSnippet"],
+            ["Smiley","SpecialChar"],
+            ["SpellChecker"],
+            ['Source'],
+            ['Maximize','Blockquote'],
+        ],
+    }
+}
+
 
 MIDDLEWARE = [
     'django.middleware.security.SecurityMiddleware',

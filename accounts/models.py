@@ -91,6 +91,7 @@ class Organisations(models.Model):
     Creat_Date = models.DateField()
     Phone_Number =  models.CharField(max_length=15)
     Headquarters = CountryField()
+    slugan= models.CharField(null=True, max_length=50)
 
     def __str__(self):
         return str(self.Name)

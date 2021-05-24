@@ -46,6 +46,8 @@ class PostUpdateView(LoginRequiredMixin, UserPassesTestMixin, UpdateView):
     model = Post
     fields = ['title', 'content','image','Hyper_Text','tags']
     template_name= 'blog/blog-update.html'
+    
+    
 
     def form_valid(self, form):
         form.instance.author = self.request.user

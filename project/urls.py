@@ -28,6 +28,7 @@ urlpatterns = [
     path('', include('job.urls',namespace= 'joburl')),
     path('contact-us/', include('contact.urls',namespace= 'contacts')),
     path('blog/', include('blog.urls',namespace= 'blog')),
+    path('ckeditor/', include('ckeditor_uploader.urls')),
 ]
 
 
