@@ -7,7 +7,7 @@ from django.views.generic import (
     UpdateView,
     DeleteView
 )
-from .models import Post
+from .models import Post ,Tag
 from .forms import PostForm
 # Create your views here.
 
@@ -21,6 +21,12 @@ class PostListView(ListView):
     def get_context_data(self, **kwargs):
         context = super().get_context_data(**kwargs)
         context['book_list'] = Post.objects.all().order_by('-date_posted')[0:5]
+        cate = Tag.objects.all().order_by('-name')
+       
+        context['Cat_Dict']=cate
+
+       
+        
         return context
     
 class PostCreateView(LoginRequiredMixin, CreateView):

@@ -37,7 +37,6 @@ def home_page(request):
          cate_num= Job.objects.filter(category__exact=cat).count()
          Cat_Dict[cat]=cate_num
 
-    print(cate_num,Cat_Dict)
     context={'job_list': job_list,'cate':cate , 'cate_num':cate_num , 'Cat_Dict':Cat_Dict,'job':job}
     return render(request,'job/index.html',context)
     

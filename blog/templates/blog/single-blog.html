@@ -38,43 +38,23 @@
                      </h2><a class="text-danger" href="{% url 'blog:blog-delete' object.pk %}"><i class="fas fa-trash-alt"></i></a>
                      <a href="{% url 'blog:blog-update' object.pk %}"><i class="fas fa-edit"></i></a>
                      {% endif %}
+                     
 
                      <ul class="blog-info-link mt-3 mb-4">
-                        <li><a href="#"><i class="fa fa-user"></i> Travel, Lifestyle</a></li>
+                        <li><a href="#"><i class="fa fa-user"></i>{{object.author.organisations.Name}}</a></li>
                         <li><a href="#"><i class="fa fa-comments"></i> 03 Comments</a></li>
+                        <li><a href="#"><i class="fas fa-th-large"></i></i> 03 Comments</a></li>
                      </ul>
                      <p class="excert">
-                        <ol class="ordered-list-alpha">
+                        <ol class="ordered-list">
+                           
                         {{object.content|safe  }}
-
-                        
-
-                        MCSE boot camps have its supporters and its detractors. Some people do not understand why you
-                        should have to spend money on boot camp when you can get the MCSE study materials yourself at a
-                        fraction of the camp price. However, who has the willpower
-                     </p>
-                     <p>
-                        MCSE boot camps have its supporters and its detractors. Some people do not understand why you
-                        should have to spend money on boot camp when you can get the MCSE study materials yourself at a
-                        fraction of the camp price. However, who has the willpower to actually sit through a
-                        self-imposed MCSE training. who has the willpower to actually
                      </p>
                      <div class="quote-wrapper">
                         <div class="quotes">
                            {{object.Hyper_Text}}
                         </div>
                      </div>
-                     <p>
-                        MCSE boot camps have its supporters and its detractors. Some people do not understand why you
-                        should have to spend money on boot camp when you can get the MCSE study materials yourself at a
-                        fraction of the camp price. However, who has the willpower
-                     </p>
-                     <p>
-                        MCSE boot camps have its supporters and its detractors. Some people do not understand why you
-                        should have to spend money on boot camp when you can get the MCSE study materials yourself at a
-                        fraction of the camp price. However, who has the willpower to actually sit through a
-                        self-imposed MCSE training. who has the willpower to actually
-                     </p>
                   </div>
                </div>
                <div class="navigation-top">
@@ -107,7 +87,7 @@
                            </div>
                            <div class="detials">
                               <p>Prev Post</p>
-                              <a href="#">
+                              <a href="{% url 'blog:blog-single' post.pk|add:'-1' %}">
                                  <h4>Space The Final Frontier</h4>
                               </a>
                            </div>
@@ -116,7 +96,7 @@
                            class="col-lg-6 col-md-6 col-12 nav-right flex-row d-flex justify-content-end align-items-center">
                            <div class="detials">
                               <p>Next Post</p>
-                              <a href="#">
+                              <a href="{% url 'blog:blog-single' post.pk|add:'1' %}">
                                  <h4>Telescopes 101</h4>
                               </a>
                            </div>

@@ -43,12 +43,21 @@
                             <div class="blog_details">
                                 <a class="d-inline-block" href="{% url 'blog:blog-single' post.pk%}">
                                     <h2>{{post.title|title}}</h2>
-                                    <p>{{book_list2.Soical_State    }}</p>
+                                  
                                 </a>
-                                <p>{{post.Hyper_Text|slice:":255"}}...</p>
+                                <p>{{post.content|safe|slice:":255"}}...</p>
                                 <ul class="blog-info-link">
-                                    <li><a href="#"><i class="fa fa-user"></i> {{post.tags.Tag.name}} , Lifestyle</a></li>
+                                    <li><a href="#"><i class="fa fa-user"></i> {{post.author.organisations.Name}}</a></li>
                                     <li><a href="#"><i class="fa fa-comments"></i> 03 Comments</a></li>
+                                    <li><a href="#"><i class="fas fa-th-large"></i></i>
+                                        
+                                        {%for poost in post.tags.all|slice:"2"%}
+                                        
+                                        {{poost}} , 
+                                        
+                                        {%endfor%}
+                                    </a></li>
+
                                 </ul>
                             </div>
                         </article>
@@ -165,30 +174,15 @@
                         <aside class="single_sidebar_widget tag_cloud_widget">
                             <h4 class="widget_title">Tag Clouds</h4>
                             <ul class="list">
+                                {%for  value1 in Cat_Dict  %}
                                 <li>
-                                    <a href="#">project</a>
+                                    
+                                        <a href="#">{{value1}} </a>
+                                        
+                                    </a>
                                 </li>
-                                <li>
-                                    <a href="#">love</a>
-                                </li>
-                                <li>
-                                    <a href="#">technology</a>
-                                </li>
-                                <li>
-                                    <a href="#">travel</a>
-                                </li>
-                                <li>
-                                    <a href="#">restaurant</a>
-                                </li>
-                                <li>
-                                    <a href="#">life style</a>
-                                </li>
-                                <li>
-                                    <a href="#">design</a>
-                                </li>
-                                <li>
-                                    <a href="#">illustration</a>
-                                </li>
+                                {%endfor%}
+                            
                             </ul>
                         </aside>
 
