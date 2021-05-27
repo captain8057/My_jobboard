@@ -31,7 +31,7 @@ class Job(models.Model):  #tabdle
 
     onwer = models.ForeignKey(User, on_delete=models.CASCADE,related_name='onwer_job')
     title = models.CharField(max_length=100) #column
-    job_type = models.CharField(max_length=20 , choices= Job_Type)
+    job_type = models.CharField(max_length=20 , choices=Job_Type)
     descripyion = models.TextField()
     published_at = models.DateTimeField(default=timezone.now,null=True)
     last_Update = models.DateTimeField(auto_now=True,null=True)
@@ -40,11 +40,11 @@ class Job(models.Model):  #tabdle
     experience = models.IntegerField(default=1)
     category = models.ForeignKey('Category',on_delete=models.CASCADE)
     image = models.ImageField(upload_to=image_upload)
-    slug = models.SlugField(blank=True , null= True)
+    slug = models.SlugField(blank=True , null=True)
     like = models.ManyToManyField(User , blank=True)
     Country = CountryField(null=True)
-    Place =  models.CharField(max_length=100 , null= True,blank=True)
-    Dead_line= models.DateTimeField(null= True)
+    Place =  models.CharField(max_length=100 , null=True,blank=True)
+    Dead_line= models.CharField(max_length=100,null=True)
 
 
 

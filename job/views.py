@@ -2,7 +2,7 @@ from django.shortcuts import render,redirect
 from django.urls import reverse
 from .models import *
 from django.core.paginator import Paginator
-from .form import applyform ,JobForm 
+from .form import applyform ,JobForm ,JobFormDate
 from django.contrib.auth.decorators import login_required
 from .filters import JobFilters
 from accounts.decorators import allowedUsers,notLoggedUsers
@@ -63,19 +63,24 @@ def job_detail(request , id):
 @login_required()
 @allowedUsers(allowedGroups=['Admin','Organisations'])
 def add_job(request):
+   
    if request.method=='POST':
        form = JobForm(request.POST ,request.FILES)
-       if form.is_valid():
+       job_date =JobFormDate(request.POST)
+       
+       if form.is_valid() and job_date.is_valid():
           myform =form.save(commit=False)
           myform.onwer= request.user
           myform.save()
+          job_date.save()
           messages.success(request, f'Your Job Added!')
           return redirect(reverse('joburl:job_list'))
    else:
        form =JobForm()
+       job_date =JobFormDate()
 
 
-   return render(request,'job/add_job.html',{'form':form})
+   return render(request,'job/add_job.html',{'form':form,'job_date':job_date})
 
 @allowedUsers(allowedGroups=['Admin','Organisations'])
 def edit_job(request , id):

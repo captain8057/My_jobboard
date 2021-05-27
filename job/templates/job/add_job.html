@@ -15,6 +15,10 @@
         </div>
     </div>
     <!--/ bradcam_area  -->
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
+    <title>Static Example</title>
+
 
     <div class="job_details_area">
         <div class="container">
@@ -25,14 +29,31 @@
                         <form method="POST" enctype="multipart/form-data">
                             {% csrf_token %}
                             {% bootstrap_form form %}
+                            <div class="input-group date" id="datetimepicker1" data-target-input="nearest">
+                                {{job_date}}
+                                <div class="input-group-append" data-target="#datetimepicker1" data-toggle="datetimepicker">
+                                  <div class="input-group-text"><i class="fa fa-calendar"></i></div>
+                                </div>
+                              </div>
+                              
+                              <script>
+                                $(function () {
+                                  $("#datetimepicker1").datetimepicker({
+                                    format: 'DD/MM/YYYY HH:mm',
+                                  });
+                                });
+                              </script>
+                            
                             {% buttons %}
                                 <button class="boxed-btn3 w-100" type="submit">Post Now</button>
                             {% endbuttons %}
+                            
                         </form>
                     </div>
                 </div>
             </div>
         </div>
     </div>
+   
 
     {% endblock body %}
